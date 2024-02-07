@@ -6,6 +6,8 @@
 # GNU General Public License v3.0+ (see LICENSES/GPL-3.0-or-later.txt or https://www.gnu.org/licenses/gpl-3.0.txt)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+# the target test "cluster" covering the testing for that module
+
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
 
@@ -40,11 +42,10 @@ options:
       default: present
       type: str
 seealso:
-- module: community.vmware.vmware_cluster_drs
-- module: community.vmware.vmware_cluster_ha
-- module: community.vmware.vmware_cluster_vsan
-extends_documentation_fragment:
-- community.vmware.vmware.documentation
+- module: vmware.vmware.vmware_cluster_drs
+- module: vmware.vmware.vmware_cluster_ha
+- module: vmware.vmware.vmware_cluster_vsan
+
 
 '''
 
@@ -72,16 +73,18 @@ EXAMPLES = r'''
 RETURN = r'''#
 '''
 
+
+
 try:
     from pyVmomi import vim, vmodl
 except ImportError:
     pass
 
 from ansible.module_utils.basic import AnsibleModule
+from ..modules_utils.vmware import vmware_argument_spec
 from ansible_collections.community.vmware.plugins.module_utils.vmware import (
     PyVmomi,
     find_datacenter_by_name,
-    vmware_argument_spec,
     wait_for_task)
 from ansible.module_utils._text import to_native
 

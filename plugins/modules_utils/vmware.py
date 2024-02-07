@@ -45,15 +45,16 @@ class ApiAccessError(Exception):
 def vmware_argument_spec():
     return dict(
         hostname=dict(type='str',
+                      aliases=['vcenter_hostname'],
                       required=False,
                       fallback=(env_fallback, ['VMWARE_HOST']),
                       ),
         username=dict(type='str',
-                      aliases=['user', 'admin'],
+                      aliases=['vcenter_username', 'user', 'admin'],
                       required=False,
                       fallback=(env_fallback, ['VMWARE_USER'])),
         password=dict(type='str',
-                      aliases=['pass', 'pwd'],
+                      aliases=['vcenter_password', 'pass', 'pwd'],
                       required=False,
                       no_log=True,
                       fallback=(env_fallback, ['VMWARE_PASSWORD'])),
@@ -61,6 +62,7 @@ def vmware_argument_spec():
                   default=443,
                   fallback=(env_fallback, ['VMWARE_PORT'])),
         validate_certs=dict(type='bool',
+                            aliases=['vcenter_validate_certs'],
                             required=False,
                             default=True,
                             fallback=(env_fallback, ['VMWARE_VALIDATE_CERTS'])

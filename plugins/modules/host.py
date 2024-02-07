@@ -203,8 +203,9 @@ except ImportError:
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils._text import to_native
+from ..modules_utils.vmware import vmware_argument_spec
 from ansible_collections.community.vmware.plugins.module_utils.vmware import (
-    PyVmomi, TaskError, vmware_argument_spec,
+    PyVmomi, TaskError,
     wait_for_task, find_host_by_cluster_datacenter, find_hostsystem_by_name
 )
 
